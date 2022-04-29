@@ -1,0 +1,23 @@
+.container{
+    display: block;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.thumb{
+    display: flex;
+}
+.button{
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color: azure;
+    font-weight: 700;
+    font-size: 18px;
+
+}
+
+.button:active{
+    background-color: aquamarine;
+}
