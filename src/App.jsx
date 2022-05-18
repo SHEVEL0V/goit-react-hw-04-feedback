@@ -16,17 +16,19 @@ export default function App() {
     setButtons(data.map(({ name }) => name));
   }, []);
 
+  const increment = 1;
+
   const onIncrement = name => {
     switch (name) {
       case 'good':
-        setGood(preG => preG + 1);
+        setGood(preG => preG + increment);
 
         break;
       case 'neutral':
-        setNeutral(preN => preN + 1);
+        setNeutral(preN => preN + increment);
         break;
       case 'bad':
-        setBad(preB => preB + 1);
+        setBad(preB => preB + increment);
         break;
 
       default:
