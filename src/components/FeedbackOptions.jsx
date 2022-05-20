@@ -2,17 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import s from './style.module.css';
 
-export default function FeedbackOptions({ options, onLeaveFeedback }) {
+export default function FeedbackOptions({ buttons, handleBtnClick }) {
   return (
     <div className={s.thumb}>
-      {options &&
-        options.map(el => {
+      {buttons &&
+        buttons.map(el => {
           return (
             <button
               key={el}
               className={s.button}
               name={el}
-              onClick={e => onLeaveFeedback(e.currentTarget.name)}
+              onClick={e => handleBtnClick(e.currentTarget.name)}
             >
               {el}
             </button>
@@ -23,6 +23,6 @@ export default function FeedbackOptions({ options, onLeaveFeedback }) {
 }
 
 FeedbackOptions.propTypes = {
-  onLeaveFeedback: PropTypes.func.isRequired,
-  options: PropTypes.arrayOf(PropTypes.string.isRequired),
+  handleBtnClick: PropTypes.func.isRequired,
+  buttons: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Section from './components/Section';
 import Statistics from './components/Statistics';
 import Title from './components/title';
@@ -7,33 +7,17 @@ import Notification from './components/Notification';
 import data from './data/options.json';
 
 export default function App() {
-  const [good, setGood] = useState(0);
-  const [neutral, setNeutral] = useState(0);
-  const [bad, setBad] = useState(0);
-  const [buttons, setButtons] = useState();
-
-  useEffect(() => {
-    setButtons(data.map(({ name }) => name));
-  }, []);
-
+  const state = {};
+  data.map(el => {
+    return (state[el.name] = 0);
+  });
+  const [options, setOptions] = useState(state);
+  const buttons = Object.keys(options);
+  const { good, neutral, bad } = options;
   const increment = 1;
 
-  const onIncrement = name => {
-    switch (name) {
-      case 'good':
-        setGood(preG => preG + increment);
-
-        break;
-      case 'neutral':
-        setNeutral(preN => preN + increment);
-        break;
-      case 'bad':
-        setBad(preB => preB + increment);
-        break;
-
-      default:
-        break;
-    }
+  const handleBtnClick = key => {
+    setOptions(preOptions => ({ ...preOptions, [key]: preOptions[key] + increment }));
   };
 
   const countTotalFeedback = () => {
@@ -47,7 +31,7 @@ export default function App() {
     <>
       <Section>
         <Title title="Plaese leave feedba" />
-        <FeedbackOptions options={buttons} onLeaveFeedback={onIncrement} />
+        <FeedbackOptions buttons={buttons} handleBtnClick={handleBtnClick} />
       </Section>
       <Section>
         {!countTotalFeedback() ? (
